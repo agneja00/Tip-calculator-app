@@ -1,0 +1,243 @@
+@import "variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Mono", monospace;
+}
+
+body {
+  background-color: hsl(185, 41%, 84%);
+}
+
+.header {
+  text-align: center;
+
+  &__logo {
+    margin: 3rem 0;
+  }
+}
+
+.main {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: $container-border-radius $container-border-radius 0 0;
+
+  &__wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+.fill-container {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+
+  &__error {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__label {
+    color: $title-color;
+    margin-bottom: 0.3rem;
+  }
+
+  &__bill-error-message {
+    color: $error-color;
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    color: $primary-color;
+    text-align: end;
+    width: 100%;
+    border: none;
+    border-radius: $small-border-radius;
+    background-color: $tertiary-color;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    appearance: none;
+    cursor: pointer;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    &::placeholder {
+      color: hsl(184, 14%, 56%);
+    }
+
+    &:focus {
+      outline: 2px solid $secondary-color;
+    }
+
+    &-icon {
+      position: absolute;
+      width: 0.8rem;
+      top: 1.1rem;
+      left: 1rem;
+    }
+  }
+
+  &__tips-title {
+    color: $title-color;
+    margin-bottom: 0.8rem;
+  }
+
+  &__people-error-message {
+    color: $error-color;
+  }
+}
+
+.tips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  &__tip {
+    font-size: 1.5rem;
+    color: $tertiary-color;
+    background-color: $primary-color;
+    border: none;
+    border-radius: $small-border-radius;
+    padding: 0.5rem 0;
+    width: 47%;
+
+    &:hover {
+      background-color: hsl(180, 60%, 75%);
+      color: $primary-color;
+      cursor: pointer;
+    }
+
+    &--active {
+      background-color: $secondary-color;
+      color: $primary-color;
+    }
+
+    &--custom {
+      color: $primary-color;
+      text-align: end;
+      background-color: $tertiary-color;
+      padding-right: 1rem;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      &:focus {
+        outline-color: $secondary-color;
+        background-color: $tertiary-color;
+      }
+    }
+  }
+}
+
+.total-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  background-color: $primary-color;
+  border-radius: $container-border-radius;
+  padding: 2rem;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__person {
+    &-total {
+      color: hsl(0, 0%, 100%);
+    }
+
+    &-person {
+      font-size: 0.9rem;
+      color: hsl(184, 14%, 56%);
+    }
+  }
+
+  &__amount {
+    font-size: 2rem;
+    color: $secondary-color;
+  }
+
+  &__btn {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: $primary-color;
+    background-color: $secondary-color;
+    border: none;
+    border-radius: $small-border-radius;
+    padding: 0.6rem 0;
+    margin-top: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: hsl(180, 60%, 75%);
+    }
+
+    &:disabled {
+      background-color: hsl(183, 87%, 22%);
+      cursor: default;
+    }
+  }
+}
+
+.footer {
+  &__paragraph {
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main {
+    border-radius: $container-border-radius;
+
+    &__wrapper {
+      display: flex;
+      gap: 3rem;
+      padding: 2rem;
+    }
+  }
+
+  .fill-container {
+    flex: 1;
+    padding: 0.5rem 0 0 1rem;
+  }
+
+  .tips-container {
+    &__tip {
+      width: 30.5%;
+    }
+  }
+
+  .total-container {
+    flex: 1;
+    padding: 2.5rem;
+
+    &__amount {
+      font-size: 3rem;
+    }
+
+    &__btn {
+      margin-top: 4.375rem;
+    }
+  }
+}
