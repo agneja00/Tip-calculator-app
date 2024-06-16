@@ -1,14 +1,8 @@
 import { validateInputs } from "./validateInputs.js";
 
 const bill = document.querySelector("#bill");
+const tipsContainer = document.querySelector(".tips-container");
 const tips = document.querySelectorAll(".tips-container__tip");
-const tipFive = document.querySelector(".tips-container__tip--five");
-const tipTen = document.querySelector(".tips-container__tip--ten");
-const tipFifteen = document.querySelector(".tips-container__tip--fifteen");
-const tipTwentyFive = document.querySelector(
-  ".tips-container__tip--twenty-five"
-);
-const tipFifty = document.querySelector(".tips-container__tip--fifty");
 const tipCustom = document.querySelector(".tips-container__tip--custom");
 const numberOfPeople = document.querySelector("#people");
 const billErrorMessage = document.querySelector(
@@ -24,13 +18,14 @@ const resetBtn = document.querySelector(".total-container__btn");
 let tip = 0;
 
 function removeOrAddFocusStyle(event) {
-  tips.forEach((tipPercentage) => {
-    tipPercentage.classList.remove("tips-container__tip--active");
+  tips.forEach((tip) => {
+    tip.classList.remove('tips-container__tip--active');
   });
 
-  event.target.classList.add("tips-container__tip--active");
+  if (event.target.classList.contains('tips-container__tip')) {
+    event.target.classList.add('tips-container__tip--active');
+  }
 }
-
 function resetValues() {
   resetBtn.removeAttribute("disabled");
 
@@ -52,38 +47,23 @@ function resetValues() {
 }
 
 function countTipPercentage() {
-  tipFive.addEventListener("click", (event) => {
-    tip = 5;
-    removeOrAddFocusStyle(event);
-    resetValues();
-  });
+  tipsContainer.addEventListener('click', (event) => {
+    const tipValue = event.target.getAttribute('data-tip-value');
 
-  tipTen.addEventListener("click", (event) => {
-    tip = 10;
-    removeOrAddFocusStyle(event);
-    resetValues();
-  });
+    if (tipValue === '5') {
+      tip = 5;
+    } else if (tipValue === '10') {
+      tip = 10;
+    } else if (tipValue === '15') {
+      tip = 15;
+    } else if (tipValue === '25') {
+      tip = 25;
+    } else if (tipValue === '50') {
+      tip = 50;
+    } else {
+      tip = tipCustom.value;
+    }
 
-  tipFifteen.addEventListener("click", (event) => {
-    tip = 15;
-    removeOrAddFocusStyle(event);
-    resetValues();
-  });
-
-  tipTwentyFive.addEventListener("click", (event) => {
-    tip = 25;
-    removeOrAddFocusStyle(event);
-    resetValues();
-  });
-
-  tipFifty.addEventListener("click", (event) => {
-    tip = 50;
-    removeOrAddFocusStyle(event);
-    resetValues();
-  });
-
-  tipCustom.addEventListener("input", (event) => {
-    tip = tipCustom.value;
     removeOrAddFocusStyle(event);
     resetValues();
   });
